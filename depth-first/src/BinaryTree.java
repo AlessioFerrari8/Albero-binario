@@ -14,6 +14,14 @@ public class BinaryTree {
     }
 
     // depth first
+    private void postOrder(Node n) {
+        // exit clause
+        if (n == null) return;
+
+        postOrder(n.getLeft());
+        postOrder(n.getRight());        
+        System.out.print(n.getData());
+    }
 
     // in order
     
@@ -31,4 +39,12 @@ public class BinaryTree {
     }
 
     // post order
+    private void inOrder(Node n) {
+        // exit clause
+        if (n == null) return;
+
+        inOrder(n.getLeft());
+        System.out.print(n.getData());
+        inOrder(n.getRight());        
+    }
 }
