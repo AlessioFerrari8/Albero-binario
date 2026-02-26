@@ -22,5 +22,6 @@ public class App {
 
         tree.preOrder();
         System.out.println("");
+        System.out.println(tree.nodeCounter(a));
     }
 }

@@ -47,4 +47,15 @@ public class BinaryTree {
         System.out.print(n.getData());
         inOrder(n.getRight());        
     }
+
+    /**
+     * Conta quanti nodi sono presenti nel sotto albero
+     * @param root nodo di partenza
+     * @return lunghezza
+     */
+    public int nodeCounter(Node root) {
+        if (root == null) return 0; // exit clause + basic case
+
+        return nodeCounter(root.getLeft()) + nodeCounter(root.getRight()) + 1;
+    }
 }
