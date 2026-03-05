@@ -81,4 +81,37 @@ public class BinaryTree {
         int rightDepth = depth(root.getRight());
         return Math.max(leftDepth, rightDepth) + 1;
     }
+
+    /**
+     * - String mostraPercorso(Node start, Node end), che produce il 
+     * percorso (salendo o scendendo) che collega due nodi appartenenti 
+     * allo stesso sottoalbero
+     * @param first
+     * @param second
+     * @return
+     */
+    public String path(Node first, Node second) {
+        if (first == null) return "First node is empty";
+        if (second == null) return "Second node is empty";
+
+        // alla fine
+        if (first == second) return String.valueOf(second.getData()); 
+
+        // controllo se andare a destra o a sinistra
+        if (first.getLeft() != null) {
+            // buildo la stringa con la chiamata ricorsiva
+            String leftPath = path(first.getLeft(), second) + first.getData();
+            if (leftPath != null) {
+                return first.getData() + " " + leftPath;
+            }
+        } else if (first.getRight() != null) {
+            String rightPath = path(first.getRight(), second) + first.getData();
+            if (rightPath != null) {
+                return first.getData() + " " + rightPath;
+            }
+        }
+        
+        return "empty";
+    }
+
 }

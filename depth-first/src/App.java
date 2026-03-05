@@ -26,5 +26,7 @@ public class App {
         System.out.println(tree.leavesCouter(a));
         System.out.println(tree.searchNode(a, 'U'));
         System.out.println(tree.depth(a));
+
+        tree.path(b, i);
     }
 }
