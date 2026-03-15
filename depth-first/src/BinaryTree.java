@@ -91,27 +91,84 @@ public class BinaryTree {
      * @return
      */
     public String path(Node first, Node second) {
+        // controllo primo e secondo che non siano nulli
         if (first == null) return "First node is empty";
         if (second == null) return "Second node is empty";
 
-        // alla fine
+        // alla fine basta aggiungere il valore (devo fare value of perché non mi lascia cosare il char)
         if (first == second) return String.valueOf(second.getData()); 
 
-        // controllo se andare a destra o a sinistra
+        // controllo a sinistra
         if (first.getLeft() != null) {
             // buildo la stringa con la chiamata ricorsiva
-            String leftPath = path(first.getLeft(), second) + first.getData();
-            if (leftPath != null) {
-                return first.getData() + " " + leftPath;
+            String leftPath = path(first.getLeft(), second);
+            // controllo che il nodo sia stato trovato nel sottoalbero
+            if (!leftPath.isEmpty()) {
+                return first.getData() + " " + leftPath; // aggiorno
             }
-        } else if (first.getRight() != null) {
-            String rightPath = path(first.getRight(), second) + first.getData();
-            if (rightPath != null) {
+        }
+
+        // stessa logica di sopra 
+        if (first.getRight() != null) {
+            String rightPath = path(first.getRight(), second);
+            if (!rightPath.isEmpty()) {
                 return first.getData() + " " + rightPath;
             }
         }
         
-        return "empty";
+        return "";
     }
+
+    /**
+     * int calcolaLivello(Node n), che rivela a quale livello appartiene 
+     * il nodo in input (la root è a livello 1, e così via...)
+     */
+    public int calculateLivellate(Node n) { // quanto è bello il nome del metodo ( si legge in inglish )
+        if (n == null) return 0;
+
+        return calculateLivellateHelper(this.root, n, 1);
+
+    }
+
+    private int calculateLivellateHelper(Node current, Node target, int level) {
+        if (current == null) return 0; // caso base null
+        if (current == target) return level; // trovato!!
+
+
+        // provo a sinistra
+        int left = calculateLivellateHelper(current.getLeft(), target, level + 1);
+        if (left != 0) return left;
+
+        // destra
+        return calculateLivellateHelper(current.getRight(), target, level + 1);
+    }
+
+    /**
+     * String mostraPercorso(Node start, Node end), che produce il percorso (salendo o scendendo) 
+     * che collega due nodi appartenenti allo stesso sottoalbero
+     */
+    public String mostraitPercorsait(Node start, Node end) {
+        String result = mostraitPercorsaitHelper(start, end);
+        return result;
+    }
+
+    private String mostraitPercorsaitHelper(Node current, Node end) {
+        // nodo non trovato
+        if (current == null) return null; // caso base
+
+        // nodo trovato
+        if (current == end) return "" + current.getData(); 
+
+        // analizzo destra e sinistra
+        String left = mostraitPercorsaitHelper(current.getLeft(), end);
+        if (left != null) return current.getData() + " " + left;
+
+        String right = mostraitPercorsaitHelper(current.getRight(), end);
+        if (right != null) return current.getData() + " " + right;
+
+        // non trovato
+        return null;
+    }
+
 
 }
