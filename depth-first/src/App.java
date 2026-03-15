@@ -27,6 +27,14 @@ public class App {
         System.out.println(tree.searchNode(a, 'U'));
         System.out.println(tree.depth(a));
 
-        tree.path(b, i);
+        System.out.println(tree.path(b, i));
+
+
+        System.out.println(tree.mostraitPercorsait(a, e));
+        System.out.println(tree.calculateLivellate(a));
+        System.out.println(tree.calculateLivellate(b));
+        System.out.println(tree.calculateLivellate(h));
+        System.out.println(tree.calculateLivellate(f));
+        
     }
 }
